@@ -23,14 +23,33 @@ export default function AuthenticatedLayout({ header, children }) {
                                 </Link>
                             </div>
 
+                            {(user.role_id == 3) ?
+                           ( <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <NavLink
+                                href={route('dashboard')}
+                                active={route().current('dashboard')}
+                            >
+                                Dashboard
+                            </NavLink>
+                            </div>) :
+                            (<>
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink
                                     href={route('dashboard')}
                                     active={route().current('dashboard')}
                                 >
-                                    Dashboard2
+                                    Dashboard
                                 </NavLink>
                             </div>
+                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+
+                                <a href="/users" className='inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:outline-none '>Dash</a>
+                                <a href="/equip" className='inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:outline-none '>Test</a>
+                                <a href="/user_id" className='inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:outline-none '>Id user</a>
+
+                            </div>
+                            </>)
+                            }
                         </div>
 
                         <div className="hidden sm:ms-6 sm:flex sm:items-center">

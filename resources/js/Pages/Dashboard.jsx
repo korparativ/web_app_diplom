@@ -1,8 +1,10 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head } from '@inertiajs/react';
+import { Head, usePage } from '@inertiajs/react';
 import EquipmentGraph from './Ec/EquipmentGraph';
+import Role from './Ec/Role';
 
 export default function Dashboard() {
+    const user = usePage().props.auth.user;
     return (
         <AuthenticatedLayout
             header={
@@ -11,18 +13,30 @@ export default function Dashboard() {
                 </h2>
             }
         >
-            <Head title="Dashboard" /> Нуфв
+            <Head title="Dashboard" />
 
-            <div className="py-12">
+            {(user.role_id == 3) ?
+
+            (<div className="py-12">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                         <div className="p-6 text-gray-900">
-                            Привет
+                            {user.name}, обратитесь к администратору за выдачей прав или оставьте заявку на admin@dakenergy.ru
                         </div>
                     </div>
                 </div>
-            </div>
-            <EquipmentGraph />
+            </div>) :
+            (<div className="py-12">
+                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+                    <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg">
+                        <div className="p-6 text-gray-900">
+                            Привет, {user.name}
+                        </div>
+                    </div>
+                </div>
+            </div>)
+            }
+            {/* <EquipmentGraph  /> */}
         </AuthenticatedLayout>
     );
 }

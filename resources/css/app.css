@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.wid{
+    width: 150px;
+}
+
+.check{
+    display: contents;
+}
+
+.max-h {
+    max-height: 100vh;
+}
