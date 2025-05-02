@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('equipment', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->unique();
-            $table->date('date')->nullable();
-            $table->string('signature');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->integer('role_id')->default(0);
+            $table->string('signature')->default('new user');
         });
     }
 
@@ -25,6 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('equipment');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('role_id');
+            $table->dropColumn('signature');
+        });
     }
 };

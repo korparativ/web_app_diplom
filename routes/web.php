@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\EquipmentController;
+use App\Http\Controllers\Ec\EquipmentController;
+use App\Http\Controllers\Ec\OrderTOController;
+use App\Http\Controllers\Ec\ProtocolController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -31,12 +32,32 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/users', [UserController::class, 'showUsers'])->name('ec.equipmentGraph');
-    Route::get('/equip', [EquipmentController::class, 'index'])->name('ec.equip');
-    Route::post('/equip', [EquipmentController::class, 'add'])->name('ec.test');
-    Route::get('/equip_show', [EquipmentController::class, 'show']);
+
+
+    Route::get('/equip_show', [EquipmentController::class, 'show'])->name('ec.show');
+    Route::get('/equip/{id}/{name}', [EquipmentController::class, 'index'])->name('ec.equip');
     Route::post('/equip_update', [EquipmentController::class, 'update'])->name('ec.update');
-    Route::get('/user_id', [UserController::class, 'showId']);
+
+    Route::get('/equip', function () {
+        return Inertia::render('Ec/EquipAdd');
+    });
+    Route::post('/equip', [EquipmentController::class, 'add'])->name('ec.add');
+
+    Route::get('/equip_menu/{id}/{name}', function ($id, $name) {
+        return Inertia::render('Ec/MenuTO', ['id' => $id, 'name' => $name]);
+    });
+    Route::get('/protocol_add/{id}/{name}', function ($id, $name) {
+        return Inertia::render('Ec/ProtocolForm', ['id' => $id, 'name' => $name]);
+    });
+    Route::post('/protocol_add', [ProtocolController::class, 'add'])->name('ec.protocol_add');
+    Route::get('/order_to_add/{id}/{name}', function ($id, $name) {
+        return Inertia::render('Ec/OrderTOForm', ['id' => $id, 'name' => $name]);
+    });
+    Route::post('/order_to_add', [OrderTOController::class, 'add'])->name('ec.order_to_add');
+    Route::get('/order_i_add/{id}/{name}', function ($id, $name) {
+        return Inertia::render('Ec/OrderIForm', ['id' => $id, 'name' => $name]);
+    });
+
 
 });
 
