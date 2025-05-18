@@ -15,14 +15,13 @@ function EquipSchedule({equip}) {
         } else return "red";
     }
     return (
-        <>
+        <div className="py-12">
         <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
             <NavLink href={route('dashboard')}
                     active={route().current('dashboard')}>
                     Назад
             </NavLink>
         </div>
-        <div className="py-12">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                         <div className="p-6 text-gray-900">
@@ -45,7 +44,7 @@ function EquipSchedule({equip}) {
 			<td style={{ backgroundColor: setColor(el.date) }}>{el.name}</td>
 			<td style={{ backgroundColor: setColor(el.date) }}>{el.date}</td>
 			<td style={{ backgroundColor: setColor(el.date) }}>{el.signature}</td>
-			<td><button>Подробная информация</button></td>
+			<td><a class='btn' href={'/menu_info/' + el.id + '/' + el.name}>Подробная информация</a></td>
 			<td><a class='btn' href={'/equip_menu/' + el.id + '/' + el.name}>Провести ТО</a>
             </td>
 		</tr>
@@ -60,7 +59,6 @@ function EquipSchedule({equip}) {
                     </div>
                 </div>
             </div>
-            </>
      );
 }
 

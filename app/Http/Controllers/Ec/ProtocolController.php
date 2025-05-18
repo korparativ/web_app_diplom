@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Equipment;
 use App\Models\Protocol;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Inertia\Inertia;
 
 class ProtocolController extends Controller
 {
@@ -29,7 +31,10 @@ class ProtocolController extends Controller
         return Redirect::to('/equip_show');
     }
 
-    public function show() {
+    public function show($name) {
+        $protocol = DB::table('protocols')->where('equipment', $name)->get();
+        // $protocol = Protocol::all()->where('equipment', $name);
 
+        return Inertia::render('Ec/ProtocolSchedule', ['protocol' => $protocol]);
     }
 }

@@ -13,9 +13,6 @@ class Equipment extends Model
     protected $fillable = [
         'name',
         'date',
-        'protocol',
-        'cells',
-        'user_name',
-        'user_role',
+        'signature',
     ];
 }

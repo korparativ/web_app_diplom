@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Equipment;
 use App\Models\OrderTO;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Inertia\Inertia;
 
 class OrderTOController extends Controller
 {
@@ -31,7 +33,10 @@ class OrderTOController extends Controller
         return Redirect::to('/equip_show');
     }
 
-    public function show() {
+    public function show($name) {
+        $order = DB::table('order_t_o_s')->where('equipment', $name)->get();
+        // $order = OrderTO::all()->where('equipment', $name);
 
+        return Inertia::render('Ec/OrderSchedule', ['order' => $order]);
     }
 }

@@ -1,4 +1,4 @@
-import {  Head, Link, useForm, usePage } from '@inertiajs/react';
+import {  Head, useForm, usePage } from '@inertiajs/react';
 import InputLabel from '@/Components/InputLabel';
 import TextInput from '@/Components/TextInput';
 import InputError from '@/Components/InputError';
@@ -44,7 +44,6 @@ function ProtocolForm({id, name}) {
             />
             <InputError message={errors.number} className="mt-2" />
 
-
             <InputLabel htmlFor="date" value="Дата оформления протокола" />
             <TextInput
                 id="date"
@@ -58,11 +57,6 @@ function ProtocolForm({id, name}) {
                 required
             />
             <InputError message={errors.date} className="mt-2" />
-
-
-
-
-
     <td/>
     <PrimaryButton className="ms-4" disabled={processing}>Добавить протокол</PrimaryButton>
   </form>

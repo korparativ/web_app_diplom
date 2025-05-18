@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Ec;
 
 use App\Http\Controllers\Controller;
 use App\Models\Equipment;
 use App\Models\OrderI;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Inertia\Inertia;
 
 class OrderIController extends Controller
 {
@@ -22,7 +24,6 @@ class OrderIController extends Controller
         $order->save();
         $equip  = Equipment::where('name', $request->equipment)->first();
         if ($equip->date < $request->date_stop) {
-            # code...
             $equip->date = $request->date_stop;
             $equip->signature = $request->signature;
             $equip->save();
@@ -31,7 +32,10 @@ class OrderIController extends Controller
         return Redirect::to('/equip_show');
     }
 
-    public function show() {
+    public function show($name) {
+        $order = DB::table('order_i_s')->where('equipment', $name)->get();
+        // $order = OrderI::all()->where('equipment', $name);
 
+        return Inertia::render('Ec/OrderSchedule', ['order' => $order]);
     }
 }

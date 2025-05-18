@@ -3,6 +3,7 @@
 use App\Http\Controllers\Ec\EquipmentController;
 use App\Http\Controllers\Ec\OrderTOController;
 use App\Http\Controllers\Ec\ProtocolController;
+use App\Http\Controllers\Ec\OrderIController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -57,6 +58,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/order_i_add/{id}/{name}', function ($id, $name) {
         return Inertia::render('Ec/OrderIForm', ['id' => $id, 'name' => $name]);
     });
+    Route::post('/order_i_add', [OrderIController::class, 'add'])->name('ec.order_i_add');
+
+    Route::get('/menu_info/{id}/{name}', function ($id, $name) {
+        return Inertia::render('Ec/MenuInfo', ['id' => $id, 'name' => $name]);
+    });
+    Route::get('/order_info_i/{name}', [OrderIController::class, 'show']);
+    Route::get('/order_info_to/{name}', [OrderTOController::class, 'show']);
+    Route::get('/protocol_info/{name}', [ProtocolController::class, 'show']);
 
 
 });

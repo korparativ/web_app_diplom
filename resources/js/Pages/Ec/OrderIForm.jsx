@@ -20,7 +20,7 @@ function OrderIForm({id, name}) {
     const submit = (e) => {
         e.preventDefault();
 
-        post(route('ec.order_to_add'), {
+        post(route('ec.order_i_add'), {
             onFinish: () => reset('number', 'date_start', 'date_stop', 'worker'),
         });
     };
