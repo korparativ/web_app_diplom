@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\Ec\BearingController;
+use App\Http\Controllers\Ec\EngineController;
 use App\Http\Controllers\Ec\EquipmentController;
 use App\Http\Controllers\Ec\OrderTOController;
 use App\Http\Controllers\Ec\ProtocolController;
 use App\Http\Controllers\Ec\OrderIController;
+use App\Http\Controllers\Ec\MechanismController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -68,6 +71,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/protocol_info/{name}', [ProtocolController::class, 'show']);
 
 
+
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/mechanisms', [MechanismController::class, 'show']);
+    Route::post('/engine_add', [EngineController::class, 'add'])->name('ec.engine_add');
+    Route::post('/bearing_add', [BearingController::class, 'add'])->name('ec.bearing_add');
+    Route::post('/mechanism_add', [MechanismController::class, 'add'])->name('ec.mechanism_add');
+
+    // Route::post('/mechanism/add', [MechanismController::class, 'store'])->name('ec.mechanism_add');
+    Route::post('/engine/assign', [MechanismController::class, 'update'])->name('ec.engine_assign');
 });
 
 require __DIR__.'/auth.php';

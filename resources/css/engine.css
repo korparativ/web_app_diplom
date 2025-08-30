@@ -1,0 +1,39 @@
+.name{
+    display: flex;
+    justify-content: space-around;
+    font-size: 36px;
+}
+
+.imgStyle{
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+}
+
+.engineList{
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
+.workList{
+    max-height: 110px;
+    /* width: 100%; */
+    overflow-y: scroll;
+}
+
+.fix{
+    position: sticky;
+    top: 0;
+}
+
+.imgStyleB{
+    display: flex;
+    justify-content: space-around;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.bearingList{
+    /* max-height: 200px; */
+    /* overflow-y: scroll; */
+}
